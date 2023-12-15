@@ -1,0 +1,17 @@
+{% extends 'hall/base.html' %}
+{% block content %}
+<div class="container">
+  <h2>Create</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    {% for field in form %}
+      <div class="form-group {% if field.error %}alert alert-danger{% endif %}">
+        {{field.error}}
+        {{field.label_tag}}
+        {% render_field field class="form-control" %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}
